@@ -5,7 +5,14 @@ const Post = require('./model/post')
 const Admins = require('./model/admins')
 const empDetails=require('./model/employeeDetails')
 const leaved = require('./model/leave')
+const bcrypt = require('bcrypt')
 // const admins = require('./model/admins')
+
+
+
+
+
+
 router.get("/posts",(req,res)=>{
 
     Post.find().then(rec=>{
@@ -63,7 +70,7 @@ router.post("/posts", function(req, res) {
 
     })
 
-   
+
     post.save(function(err, rec) {
       if(err) {
         return res.status(400).send("error while creating a post")
@@ -72,7 +79,7 @@ router.post("/posts", function(req, res) {
     })
   });
   router.post("/admins", function(req, res) {
- 
+
     console.log(req.body);
     const post = new Admins({
       _id: mongoose.Types.ObjectId(),
@@ -83,7 +90,7 @@ router.post("/posts", function(req, res) {
 
     })
 
-   
+
     post.save(function(err, rec) {
       if(err) {
         return res.status(404).send("error while creating a post")
@@ -92,7 +99,7 @@ router.post("/posts", function(req, res) {
     })
   });
   router.post("/employeeDetails", function(req, res) {
-   
+
     console.log(req.body);
     const post = new empDetails({
       _id: mongoose.Types.ObjectId(),
@@ -108,7 +115,7 @@ router.post("/posts", function(req, res) {
 
     })
 
-   
+
     post.save(function(err, rec) {
       if(err) {
         return res.status(404).send(err)
@@ -117,7 +124,7 @@ router.post("/posts", function(req, res) {
     })
   });
   router.post("/leave", function(req, res) {
-   
+
     console.log(req.body);
     const leave = new leaved({
       _id: mongoose.Types.ObjectId(),
@@ -127,7 +134,8 @@ router.post("/posts", function(req, res) {
         totaldays:req.body.totaldays,
         email:req.body.email,
         reason:req.body.reason,
-        
+        name:req.body.name,
+
 
     })
     leave.save(function(err, rec) {

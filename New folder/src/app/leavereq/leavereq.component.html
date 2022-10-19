@@ -66,7 +66,7 @@
             <tr class="table-primary" >
 
               <td><input type="date" style="text-indent: 0px;width: max-content;" (input)="funct($event)" formControlName="firstdate"></td>
-              <td><input type="date" style="text-indent: 0px;width: max-content;" (input)="Funct($event)" formControlName="seconddate"></td>
+              <td><input type="date" style="text-indent: 0px;width: max-content;" (input)="Funct($event)" formControlName="seconddate" min="{{cdate}}"></td>
 
             </tr>
            <tr>
@@ -82,7 +82,7 @@
       </table>
     </div>
 
-    <button type="button" class="btn cancel" (click)="closeForm()" style="width: 49%;">Close</button>||      <button type="submit" class="btn" style="width: 49%;"(click)="onSub(sel)" >Submit</button>&nbsp;
+    <button type="button" class="btn cancel" (click)="closeForm()" style="width: 49%;">Close</button>||<button type="submit" class="btn" style="width: 49%;"(click)="onSub(sel)" >Submit</button>&nbsp;
 
                   </form>
                 </div>
@@ -106,16 +106,16 @@
     <th>Status</th>
   </tr>
 </thead>
-<tbody *ngIf="!dis">
- <tr *ngFor="let posta of postss">
+<tbody >
+ <tr *ngFor="let posta of postaa">
   <td>{{posta.leavetype}}</td>
-  <td>{{posta.reason}}}</td>
+  <td>{{posta.reason}}</td>
 
 
 
   <td>{{posta.firstdate}}</td>
   <td>{{posta.seconddate}}</td>
- <td>Pending for approval</td> -->
+ <td>Pending</td>
 
 
 <!-- </tr>  {{ss}} -->

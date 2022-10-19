@@ -6,11 +6,15 @@ const leave= new mongoose.Schema({
         required:true
    },
     firstdate:{
-        type:Date,
+        type:String,
         required:true
     },
+    name:{
+      type:String,
+      required:true
+    },
     seconddate:{
-        type:Date,
+        type:String,
         // required:true
     },
     totaldays:{
@@ -26,8 +30,8 @@ const leave= new mongoose.Schema({
         required:true
 
     }
-    
+
     }
- 
+
 )
 module.exports = mongoose.model("Leave",leave)

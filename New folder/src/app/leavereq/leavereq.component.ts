@@ -1,6 +1,8 @@
+import { JsonPipe } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { first } from 'rxjs';
 import { HttpService } from '../services/http.service';
 
 @Component({
@@ -17,12 +19,18 @@ post:any[]=[]
  accCre: any;
  verify:any;
  FinalAcc:any;
- ss='ss'
- postss:any
- postaa:any
+ postss:any=[]
+ postaa:any=[]
  postForm:any|FormGroup
+ accName:any
 
   ngOnInit(): void {
+
+this.accName=this.https.getAcc()
+
+
+
+
 this.postForm = new FormGroup({
 
   reason: new FormControl(null,Validators.required),
@@ -32,15 +40,19 @@ this.postForm = new FormGroup({
 this.http.get('/api/leave').subscribe(res=>{
 
 this.postss= res
-console.log("response"+res);
 
-console.log("posts"+this.postss);
 
+// if(this.postss.email==this.accName){
 for(let post of this.postss){
-  if(post.email=this.accCre){
-    this.postaa=post
-    console.log("SUccccccc");
-    console.log(this.postaa);
+
+
+
+
+  if(post.email==this.accCre){
+
+console.log("Selected " +post.email);
+
+    this.postaa.push(post)
 
 
 
@@ -49,8 +61,7 @@ for(let post of this.postss){
 }
 
 
-console.log(this.postss.email);
-// console.log(this.accCre);
+
 
 
 
@@ -79,12 +90,12 @@ for(let post of this.verify){
 
 if(post.email==this.accCre){
   this.FinalAcc=post
-  console.log(this.FinalAcc);
+
 
 }
 
 }
-  console.log(this.verify[4].email);
+
 
 
 })
@@ -98,7 +109,8 @@ if(post.email==this.accCre){
 
 openForm(){
 this.form=true
-this.http.post('/api/slkf',this.form)
+this.postss=[]
+
 }
 closeForm(){
   this.form=false
@@ -106,8 +118,22 @@ closeForm(){
 }
 fdate:Date|any
 sdate:Date|any
+cdate:any
 funct(e: any){
   this.fdate=e.target.value;
+ var todate:any=new Date(this.fdate).getDate()+1
+if(todate<10){
+  todate= "0" +todate
+
+
+}
+var tomonth:any = new Date(this.fdate).getMonth()+1
+if(tomonth<10){
+  tomonth="0" +tomonth
+}
+var toyear:any = new Date(this.fdate).getFullYear()
+
+this.cdate=toyear +"-"+tomonth+"-"+todate
 
 
 
@@ -118,13 +144,11 @@ dis=false
 
 Funct(e: any){
   this.sdate=e.target.value;
-console.log(this.fdate);
+
 var date = new Date(this.fdate).getTime()
 var date1 = new Date(this.sdate).getTime()
   this.f =(date1-date)/86400000
-// console.log(date);
-// console.log(date1);
-console.log(this.f);
+
 
 // alert("Total no of Days"+this.f);
 
@@ -137,19 +161,15 @@ selectedi:any
   posta:any
 
 sub(sel:any){
-  console.log(sel.value);
 
-  console.log(this.posts);
+
   this.posts.totaldays= this.f
   this.dis= true
-  // console.log(this.postForm.value);
+
   this.forms=false
   this.form=false
   let c = {...this.postForm.value,...this.posts}
-  console.log(c);
 
-
-  console.log(this.selectedi.options[this.selectedi.selectedIndex].text);
 
 
 }
@@ -157,19 +177,70 @@ unSub(){
   this.dis=false
 
 }
-acc={email:"",totaldays:"",leavetype:""}
+acc={email:"",totaldays:"",leavetype:"",name:""}
 
 onSub(sel:any){
+
   this.acc.leavetype=sel.value
-  console.log("YES");
+this.acc.name=this.https.getAccName()
   this.acc.totaldays=this.f
-  this.acc.email=this.https.getAccName()
+  this.acc.email=this.accName
+
+
   this.posta={...this.postForm.value,...this.acc}
+
+
+
+
+
   // this.http.post('/api/')
 this.http.post('/api/leave',this.posta).subscribe(res=>{
-  console.log(res);
+
+
 
 })
+this.http.get('/api/leave').subscribe(res=>{
+this.postaa=[]
+  this.postss= res
+
+
+  // if(this.postss.email==this.accName){
+  for(let post of this.postss){
+
+
+
+
+    if(post.email==this.accCre){
+
+  console.log("Selected " +post.email);
+
+      this.postaa.push(post)
+
+
+
+    }
+
+  }
+
+
+
+
+
+
+
+  })
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 }

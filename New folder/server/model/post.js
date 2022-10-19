@@ -1,4 +1,5 @@
 const mongoose= require('mongoose')
+const bcrypt=require('bcrypt')
 const schema= new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
    email:{
@@ -9,7 +10,17 @@ const schema= new mongoose.Schema({
         type:String,
         required:true
     }
-    
+
+    })
+schema.pre('save',async function(next){
+      try{
+        const salt = await bcrypt.genSalt(7)
+        const hashedPassword= await bcrypt.hash(this.password,salt)
+        this.password=hashedPassword
+        next()
+      }catch(error){
+        next(error)
+      }
     })
 
 module.exports = mongoose.model("Post",schema)

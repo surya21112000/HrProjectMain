@@ -19,7 +19,7 @@ Acc:any
 
   ngOnInit(): void {
     this.accCre=this.https.getAcc()
-    console.log(this.accCre);
+    // console.log(this.accCre);
 
     this.http.get("/api/admins").subscribe(res=>{
 this.validation=res;
@@ -29,8 +29,8 @@ this.validation=res;
 for( let post of this.validation){
   if(post.email==this.accCre){
  this.Acc=post.firstname
- console.log("Full"+this.Acc);
-
+//  console.log("Full"+this.Acc);
+ this.https.pushAccName(this.Acc)
   }
 
 }
@@ -42,14 +42,23 @@ for( let post of this.validation){
       for( let post of this.validation2){
         if(post.email==this.accCre){
        this.Acc=post.firstname
-       console.log("Full"+this.Acc);
+       console.log(this.Acc);
+
+       this.https.pushAccName(this.Acc)
+       console.log("Pushed"+this.Acc);
+
 
         }
+
 
       }
 
     })
-this.https.pushAccName(this.Acc)
+
+
+
+
+
   this.display=  this.service.getAdmin()
   // this.display=this.service.getEmployee()
 

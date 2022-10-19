@@ -42,23 +42,38 @@
 
               </a></li>
             </ul>
-            <ul *ngIf="!display">
 
-
-            <li><a routerLink="/leavereq" >
-
-              <span class="nav-items"  > Leave Request</span>
-
-            </a></li>
-          </ul>
 
 
           </ul></div></div>
 
         </a></li>
-        <li><a routerLink="/attendance">
-          <i class="fas fa-comment"></i>
-          <span class="nav-item" >Attendance and Salary</span>
+        <li><a >
+          <div class="subnav">
+          <i class="fas fa-menorah"></i>
+          <span class="nav-item">Leave Request</span>
+          <i class="fa fa-caret-down"></i>
+          <div class ="subnavcontent">
+          <ul>
+            <ul *ngIf="!display" >
+              <li><a  routerLink="/leavereq">
+
+                <span class="nav-items"> Add Leave Request</span>
+
+              </a></li>
+            </ul>
+            <ul *ngIf="display">
+              <li><a routerLink="/manageLeaveReq">
+
+                <span class="nav-items" >Manage Leave request</span>
+
+              </a></li>
+            </ul>
+
+
+
+          </ul></div></div>
+
         </a></li>
 
 

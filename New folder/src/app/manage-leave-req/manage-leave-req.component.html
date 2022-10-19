@@ -1,0 +1,77 @@
+<app-header></app-header>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title></title>
+
+  <!-- Font Awesome Cdn Link -->
+
+</head>
+<body>
+  <div class="container">
+   <app-nav></app-nav>
+
+     <section class="main" >
+
+        <div class="main-top">
+            <h1>leave Request</h1>
+            <i class="fas fa-user-cog"></i>
+          </div>
+          <div class="users">
+            <div class="cards">
+
+            </div></div>
+
+<table class="table" >
+  <thead>
+  <tr>
+    <th>Emp name</th>
+      <th>Type of Leave</th>
+    <th>Remarks</th>
+    <th>From</th>
+    <th>To</th>
+    <!-- <th>Total no of Days</th> -->
+
+    <th>Status</th>
+  </tr>
+</thead>
+<tbody >
+ <tr *ngFor="let posta of postss">
+  <td>{{posta.name}}</td>
+  <td>{{posta.leavetype}}</td>
+  <td>{{posta.reason}}</td>
+
+
+
+  <td>{{posta.firstdate}}</td>
+  <td>{{posta.seconddate}}</td>
+ <td>Pending </td>
+
+
+<!-- </tr>  {{ss}} -->
+<!-- <tr *ngFor="let pos of postaa" >
+  <td>{{pos.leavetype}}</td>
+  <td>{{pos.reason}}</td>
+  <td>{{pos.firstdate}}</td>
+  <td>{{pos.secondate}}</td>
+  <td>{{pos.totaldays}}</td>
+</tr> -->
+
+</tbody>
+</table>
+    </section>
+
+<router-outlet></router-outlet>
+
+  <!-- <section class="attendance" >
+    <div class="attendance-list">
+<h1>Employee Profile</h1>
+<div class="cards">
+<img src="" alt="image" height="">
+</div>
+    </div>
+
+  </section> -->
+  </div></body>
+  <app-footer></app-footer></html>

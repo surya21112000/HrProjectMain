@@ -19,12 +19,22 @@ import{MatInputModule} from '@angular/material/input';
 import { LeaveComponent } from './leave/leave.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component'
+import{Activate} from './guards/authguard';
+import { ManageLeaveReqComponent } from './manage-leave-req/manage-leave-req.component'
 
 const approutes:Route[]=[{
 
 path:'',component:LoginComponent,
-},{
-path:'employeeDetails',component:EmployeeDetailsComponent,
+},
+{
+
+  path:'manageLeaveReq',component:ManageLeaveReqComponent,
+  },
+{
+
+  path:'login',component:LoginComponent,
+  },{
+path:'employeeDetails',component:EmployeeDetailsComponent,canActivate:[Activate],
 },{
   path:'editEmployee',component:EditEmployeeComponent,
 },
@@ -55,6 +65,7 @@ path:'employeeDetails',component:EmployeeDetailsComponent,
     LeaveComponent,
     HeaderComponent,
     FooterComponent,
+    ManageLeaveReqComponent,
 
 
 

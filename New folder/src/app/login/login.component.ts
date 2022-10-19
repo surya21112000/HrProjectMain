@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
 import { HttpService } from '../services/http.service';
 import { MongodbService } from '../servicess/mongodb.service';
+import * as bcrypt from 'bcryptjs'
 
 @Component({
   selector: 'app-login',
@@ -14,15 +15,13 @@ import { MongodbService } from '../servicess/mongodb.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-[x: string]: any;
+
   isLoginMode=true;
   constructor(private htt :HttpClient,private https:HttpService,private route:Router,private serv:MongodbService,private service:AuthService) { }
   AccountType='s'
   accounts:any=['Employee','Admin']
 
-onFormSubmit(){
 
-}
 onSwitchMode(){
   this.isLoginMode=!this.isLoginMode
 
@@ -57,25 +56,25 @@ const adPost={
   firstname:this.postForm.value.firstname,
   lastname:this.postForm.value.lastname,
 }
-console.log(this.opt);
+// console.log(this.opt);
 
 const emps =(this.opt);
-console.log(emps);
+// console.log(emps);
  if(emps=='Employee'){
-  console.log("Selected Employee");
+  // console.log("Selected Employee");
   this.htt.post('api/posts',newPost).subscribe(data=>{
-    console.log(data);
+    // console.log(data);
 
    })
-  console.log(newPost);
+  // console.log(newPost);
   this.isLoginMode=!this.isLoginMode
  }
  else{
-  console.log(adPost);
+  // console.log(adPost);
 
    console.log("Selected Admin");
   this.htt.post('api/admins',adPost).subscribe(data=>{
-     console.log(data);
+    //  console.log(data);
      this.isLoginMode=!this.isLoginMode
        })
 
@@ -97,10 +96,12 @@ admin:any=[]
 
 
 
+
+
     this.htt.get('api/admins').subscribe(response=>{
 this.adminLogin=response
     })
-    console.log(this.adminLogin);
+    // console.log(this.adminLogin);
     this.htt.get('api/posts').subscribe(response=>{
       this.empLogin=response
     })
@@ -135,8 +136,62 @@ this.adminLogin=response
 
   }
   logdisplay=true
+valid:any
+valid1:any
+boo:any
+boo1:any
 onLogin(){
 
+this.htt.get('api/admins').subscribe(res=>{
+this.valid=res
+  for(let i of this.valid){
+    // console.log(i.password);
+  this.boo= bcrypt.compareSync(this.LoginForm.value.password,i.password)
+// console.log(this.boo);
+if(this.boo==true&&this.LoginForm.value.email==i.email){
+  this.route.navigateByUrl('/employeeDetails')
+  this.service.admin()
+  this.https.pushAcc(this.LoginForm.value.email)
+  this.https.pushAccName(i.firstname)
+  console.log("pushed"+i.firstname);
+
+  // this.https.pushAccName(i.firstname)
+  // console.log("Name pushed  " +i.firstname);
+console.log(this.https.getAccName());
+
+this.service.logStatus()
+}
+
+
+
+  }
+
+})
+
+this.htt.get('/api/posts').subscribe(res=>{
+  this.valid1=res
+  for(let i of this.valid1 ){
+    this.boo1=bcrypt.compareSync(this.LoginForm.value.password,i.password)
+
+
+
+    if(this.boo1==true&&this.LoginForm.value.email==i.email){
+      // console.log("Successfull");
+
+      this.route.navigateByUrl('/employeeDetails')
+      this.service.employee()
+      this.https.pushAcc(this.LoginForm.value.email)
+
+
+
+
+
+    this.service.logStatus()
+
+
+    }
+  }
+})
   for(let posts of this.empLogin){
     // console.log(this.employee);console.log(this.LoginForm.value);
 
@@ -147,6 +202,7 @@ onLogin(){
       this.service.employee()
       this.https.pushAcc(this.LoginForm.value.email)
 this.service.logStatus()
+
     }
     else {
       for(let post of this.adminLogin){
@@ -177,7 +233,7 @@ myfun(e:any){
     this.opt=  e.target.value;
 
 
-    console.log(this.opt);
+    // console.log(this.opt);
 
        if(this.opt=='Employee'){
         this.choice=true
@@ -185,7 +241,7 @@ myfun(e:any){
        else{
         this.choice=false
        }
-       console.log(this.choice);
+      //  console.log(this.choice);
 
 
 
