@@ -19,16 +19,6 @@ export class ManageLeaveReqComponent implements OnInit {
   final:any=[]
   ngOnInit(): void {
 
-this.http.get('/api/employeeDetails').subscribe(res=>{
-  this.validation=res
-  console.log("This vakida"+this.validation.email);
-
-  for(let pos of this.validation){
-this.empDetails=pos
-console.log("Emp EMails" +this.empDetails.email);
-
-  }
-})
 
 
 
@@ -37,7 +27,7 @@ console.log("Emp EMails" +this.empDetails.email);
 
 
 
-    this.accCre=this.https.getAcc()
+
     this.http.get('/api/leave').subscribe(res=>{
       this.postss= res
 
@@ -50,7 +40,53 @@ console.log("Emp EMails" +this.empDetails.email);
 
 
   }
+  status:any
+myFunct(id:any,remarks:any){
+  this.form=false
+  this.status="Approved"
+const endpointURL=('/api/leave/'+id+'/'+this.status)
+console.log(endpointURL);
+this.http.put(endpointURL,{status:'{{this.status}}'}).subscribe()
 
+this.http.get('/api/leave').subscribe(res=>{
+  this.postss=[]
+    this.postss= res
+})
+const endpointURL1=('/api/leave/'+id+'/'+remarks.value)
+this.http.put(endpointURL1,{remarks:"{{remarks.value}}"}).subscribe()
+
+
+}
+form=false
+details={name:"",leavetype:"",reason:"",from:"",to:"",id:""}
+popup(name:any,leavetype:any,reason:any,from:any,to:any,id:any){
+this.form=true
+
+this.details.name=name
+this.details.leavetype=leavetype
+this.details.reason=reason
+this.details.from=from
+this.details.to=to
+this.details.id=id
+
+}
+myFuncti(id:any,remarks:any){
+  this.form=false
+
+
+  this.status="Declined"
+const endpointURL=('/api/leave/'+id+'/'+this.status)
+console.log(endpointURL);
+this.http.put(endpointURL,{status:'{{this.status}}'}).subscribe()
+
+this.http.get('/api/leave').subscribe(res=>{
+  this.postss=[]
+    this.postss= res
+})
+// const endpointURL1=('/api/leaves/'+id+'/'+remarks.value)
+// this.http.put(endpointURL1,{remarks:"{{remarks.value}}"}).subscribe()
+
+}
 
 
   }

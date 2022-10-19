@@ -135,7 +135,8 @@ router.post("/posts", function(req, res) {
         email:req.body.email,
         reason:req.body.reason,
         name:req.body.name,
-
+        status:req.body.status,
+        remarks:req.body.remarks
 
     })
     leave.save(function(err, rec) {
@@ -144,5 +145,36 @@ router.post("/posts", function(req, res) {
       }
       res.send(rec);
     })})
+    router.put('/leave/:id/:updatedStatus', function(req, res) {
+      leaved.findById(req.params.id, function(err, rec) {
+
+        if(err) {
+          return res.status(400).send("cannot find the post with given id")
+        }
+        if(!rec) {
+          return res.status(404).send("Post not found")
+        }
+        console.log(rec.status)
+       rec.status=req.params.updatedStatus
+        rec.save();
+        res.send(rec);
+      })
+    })
+    router.put('/leaves/:id/:updatedStatus', function(req, res) {
+      leaved.findById(req.params.id, function(err, rec) {
+
+        if(err) {
+          return res.status(400).send("cannot find the post with given id")
+        }
+        if(!rec) {
+          return res.status(404).send("Post not found")
+        }
+        console.log(rec.status)
+       rec.remarks=req.params.updatedStatus
+        rec.save();
+        res.send(rec);
+      })
+    })
+
 
 module.exports= router
