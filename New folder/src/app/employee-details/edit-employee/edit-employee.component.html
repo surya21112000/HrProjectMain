@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title></title>
+
+
+</head>
+<body>
+  <div class="container">
+  <app-nav></app-nav>
+<section class="main">
+  <div class="main-top">
+    <h1>Add Employee</h1>
+    <i class="fas fa-user-cog"></i>
+  </div>
+<div class="frm">
+
+  <form [formGroup]="postForm" (ngSubmit)="onAdd()" >
+    <div class="form-field">
+    <input type="text" placeholder="Firstname" formControlName="firstname"></div>
+    <div class="form-field">
+    <input type="text" placeholder="Secondname"  formControlName="secondname"></div>
+    <div class="form-field">
+      <input type="text" placeholder="email"  formControlName="email"></div>
+    <div class="form-field">
+      <input type="number" placeholder="Mobile number"  formControlName="mobilenumber"></div>
+      <div class="form-field">
+      <input type="number" placeholder="Emp id"  formControlName="empID"></div>
+      <div class="form-field">
+        <input type="number" placeholder="Salary"  formControlName="salary"></div>
+        <div class="form-field">
+        <input type="date" placeholder="Date of birth"  formControlName="dob"></div>
+        <div class="form-field">
+          <input type="text" placeholder="Qualification"  formControlName="qualification"></div>
+          <div class="form-field">
+          <input type="date" placeholder="Date of Joining"  formControlName="doj"></div>
+          <div class="form-field">
+            <input type="text" placeholder="Designation"  formControlName="designation"></div>
+
+            <div class="form-field">
+              <input type="textarea" placeholder="Address"  formControlName="address"></div>
+
+            <button type="submit" class="btn"> Add Employee</button>
+
+  </form>
+</div>
+</section></div></body>
+<app-footer></app-footer>
+<router-outlet></router-outlet>
+

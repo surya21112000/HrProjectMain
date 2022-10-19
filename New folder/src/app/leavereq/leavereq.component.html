@@ -1,0 +1,146 @@
+<app-header></app-header>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title></title>
+
+  <!-- Font Awesome Cdn Link -->
+
+</head>
+<body>
+  <div class="container">
+   <app-nav></app-nav>
+
+     <section class="main" >
+
+        <div class="main-top">
+            <h1>leave Request</h1>
+            <i class="fas fa-user-cog"></i>
+          </div>
+          <div class="users">
+            <div class="cards">
+
+                <button class="open-button" (click)="openForm()" *ngIf="forms">Add leave request</button>
+                <!-- The form -->
+                <div class="form-popup"  *ngIf="form" style="  box-shadow: 15px 3px 6px rgba(0, 0, 0, 0.16);">
+                  <form action='' class="form-container" [formGroup]="postForm">
+                    <h1></h1>
+
+                    <!-- <label for="email"><b>Emp Name:{{FinalAcc.firstname}}</b></label> -->
+
+
+                    <label for="psw"><b>Type of Leave : </b></label>
+
+
+                      <select class="form-select form-select-lg mb-3" #sel>
+                        <option selected value="Select leave" >select leave type</option>
+                        <option value="sick leave" >sick leave</option>
+                        <option value="casual leave">casual leave</option>
+                        <option value="privilege leave">Privilege Leave</option>
+                      </select>
+<br>
+
+                      <label for="email"><b>Reason:</b></label>
+            <div class="mb-3">
+              <label for="" class="form-label"></label>
+
+              <textarea class="form-control" name="" id="" rows="5" style="border: solid 1px black;background-color:rgb(243, 243, 243);" formControlName="reason"></textarea>
+            </div>
+    <div class="table-responsive">
+      <table class="table table-striped
+      table-hover
+      table-borderless
+      table-primary
+      align-middle" style="width: 15px;">
+        <thead class="table-light">
+
+          <tr>
+            <th>From</th>
+            <th>To</th>
+
+
+          </tr>
+          </thead>
+          <tbody class="table-group-divider" >
+            <tr class="table-primary" >
+
+              <td><input type="date" style="text-indent: 0px;width: max-content;" (input)="funct($event)" formControlName="firstdate"></td>
+              <td><input type="date" style="text-indent: 0px;width: max-content;" (input)="Funct($event)" formControlName="seconddate"></td>
+
+            </tr>
+           <tr>
+            <td><label>Total no of days</label></td>
+            <td>
+  <p>{{f}}</p>
+            </td>
+           </tr>
+          </tbody>
+          <tfoot>
+
+          </tfoot>
+      </table>
+    </div>
+
+    <button type="button" class="btn cancel" (click)="closeForm()" style="width: 49%;">Close</button>||      <button type="submit" class="btn" style="width: 49%;"(click)="onSub(sel)" >Submit</button>&nbsp;
+
+                  </form>
+                </div>
+
+            </div>
+
+          </div>
+
+
+
+<table class="table" >
+  <thead>
+  <tr>
+
+      <th>Type of Leave</th>
+    <th>Remarks</th>
+    <th>From</th>
+    <th>To</th>
+    <!-- <th>Total no of Days</th> -->
+
+    <th>Status</th>
+  </tr>
+</thead>
+<tbody *ngIf="!dis">
+ <tr *ngFor="let posta of postss">
+  <td>{{posta.leavetype}}</td>
+  <td>{{posta.reason}}}</td>
+
+
+
+  <td>{{posta.firstdate}}</td>
+  <td>{{posta.seconddate}}</td>
+ <td>Pending for approval</td> -->
+
+
+<!-- </tr>  {{ss}} -->
+<!-- <tr *ngFor="let pos of postaa" >
+  <td>{{pos.leavetype}}</td>
+  <td>{{pos.reason}}</td>
+  <td>{{pos.firstdate}}</td>
+  <td>{{pos.secondate}}</td>
+  <td>{{pos.totaldays}}</td>
+</tr> -->
+
+</tbody>
+</table>
+    </section>
+
+<router-outlet></router-outlet>
+
+  <!-- <section class="attendance" >
+    <div class="attendance-list">
+<h1>Employee Profile</h1>
+<div class="cards">
+<img src="" alt="image" height="">
+</div>
+    </div>
+
+  </section> -->
+  </div></body>
+  <app-footer></app-footer></html>

@@ -1,0 +1,52 @@
+.headers {
+    margin-left: 34px;
+
+    position: relative;
+    display: flex;
+    height: 45px;
+
+        }
+.links {
+    text-decoration: none;
+    color:rgb(94, 94, 94);
+    position:relative;
+    float:right;
+;    left:86%;
+top:19px;
+font-size: medium;
+}
+.links:hover {
+    text-decoration: none;
+    color: rgb(15, 15, 15);
+
+}
+.section{
+background-color: rgb(81, 144, 205);
+position: relative;
+display: flex;
+height: 79px;
+}
+.headers{
+  margin-left: 34px;
+
+  position: relative;
+  display: flex;
+  height: 45px;
+}
+
+  .logo{
+    height: 55px;
+    width: 109px;
+    margin-top: 9px;
+  }
+
+
+  .btn-info {
+    color: #002a54;
+    background: transparent;
+    margin-left: 82%;
+    margin-top: 19px;
+    text-align: center;
+    border: none;
+
+  }

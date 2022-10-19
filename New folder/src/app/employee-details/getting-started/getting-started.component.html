@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title></title>
+
+
+</head>
+<body>
+  <div class="container">
+  <app-nav></app-nav>
+<section class="main" *ngIf="!display">
+  <div class="main-top">
+    <h1>Getting Started</h1>
+    <i class="fas fa-user-cog"></i>
+  </div>
+<div class="frm">
+
+  <form [formGroup]="postForm" style="width:fit-content;">
+    <div class="form-field">
+    <input type="text" placeholder="Full name" formControlName="fullname"></div>
+
+    <div class="form-field">
+      <input type="number" placeholder="Mobile number"  formControlName="mobilenumber"></div>
+      <div class="form-field"  >
+        <input type="email" placeholder="Email" formControlName="email">
+     </div>
+      <div class="form-field">
+        <input type="text" placeholder="Father name"  formControlName="fathername">
+        <input type="text" placeholder="Mother name"  formControlName="mothername" style="margin-left:30px;"></div>
+        <div class="form-field">
+            <input type="number" placeholder="Aadhar number"  formControlName="aadharnumber" >
+        </div>
+        <div class="form-field">
+          <input type="text" placeholder="Qualification"  formControlName="qualification"></div>
+          <div class="form-field">
+            <input type="date" placeholder="Date of Joining"  formControlName="dob"></div>
+            <div class="form-field">
+          <input type="date" placeholder="Date of Joining"  formControlName="doj"></div>
+          <div class="form-field">
+            <input type="text" placeholder="Designation"  formControlName="designation"></div>
+
+            <div class="form-field">
+              <input type="textarea" placeholder="Address"  formControlName="address"></div>
+
+            <button type="submit" class="btn" (click)="addProf()"> Add Employee</button>
+
+  </form>
+</div>
+</section>
+<section class="main" *ngIf="display">
+    <div class="users">
+        <div class="card" >
+          <img src="./pic/img1.jpg">
+          <h4>surya</h4>
+          <p>ssss</p>
+          <div class="per" style="padding: 55px;" >
+           <p>Name: <input type="text" class="" value="{{postForm.value.fullname}}" style="border: 2px solid black;"> 
+            <p>  FatherName:{{postForm.value.fathername}}</p> 
+            <p for="">   MotherName:{{postForm.value.mothername}}</p>
+            <p>Mobile Number<input type="number" class="abcd" value="{{postForm.value.mobilenumber}}"  style="border: 2px solid black;"> </p>
+            <p for="">  Aadhar number:{{postForm.value.aadharnumber}}</p>
+            <p for="">   Designation:{{postForm.value.designation}}</p>
+            <p>Date Of Birth<input type="date" class="abcd" value="{{postForm.value.dob}}"  style="border: 2px solid black;"> </p>
+
+            <p for="">   Date of Joining:{{postForm.value.doj}}</p>
+            <p for="">   Address:{{postForm.value.fullname}}</p>
+            <p for="">   email:{{postForm.value.email}}</p>
+            <p for="">   Qualification:{{postForm.value.fullname}}</p>
+            <button class="btn btn-success" style="width: 155px;"> Save Changes</button>
+
+
+            </div>
+          </div>
+   
+        </div>
+
+
+
+
+     
+    </section>
+  </div>
+
+
+<router-outlet></router-outlet>
+
