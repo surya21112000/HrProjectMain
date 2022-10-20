@@ -74,7 +74,7 @@ myFuncti(id:any,remarks:any){
   this.form=false
 
 
-  this.status="Declined"
+  this.status="Decline"
 const endpointURL=('/api/leave/'+id+'/'+this.status)
 console.log(endpointURL);
 this.http.put(endpointURL,{status:'{{this.status}}'}).subscribe()
