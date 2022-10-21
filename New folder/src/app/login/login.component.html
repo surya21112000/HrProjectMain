@@ -76,8 +76,13 @@
 
 
       <div *ngFor="let pos of accounts" class="s">
+<table>
+<tr>
+  <td>     <input type="radio" style="background-color: transparent;"  name="s" id="" (change)="myfun($event)" value ="{{pos}}"></td>
+  <td style="margin-left:7px ;"> &nbsp; &nbsp; &nbsp; {{pos}}</td>
+</tr>
+</table>
 
-        <input type="radio" style="background-color: transparent;"  value ="{{pos}}"name="s" id="" (change)="myfun($event)">{{pos}}
       </div>
 
           <a href="#"><button class="butn" type ="submit" (click)="onSignUp()" style="margin-top:18px ;"  >Register</button></a>

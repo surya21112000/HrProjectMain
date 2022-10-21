@@ -177,7 +177,7 @@ unSub(){
   this.dis=false
 
 }
-acc={email:"",totaldays:"",leavetype:"",name:"",status:""}
+acc={email:"",totaldays:"",leavetype:"",name:"",status:"",remarks:""}
 
 onSub(sel:any){
 
@@ -186,6 +186,7 @@ onSub(sel:any){
   this.acc.totaldays=this.f
   this.acc.email=this.accName
   this.acc.status="Pending"
+  this.acc.remarks="-"
 
 
   this.posta={...this.postForm.value,...this.acc}

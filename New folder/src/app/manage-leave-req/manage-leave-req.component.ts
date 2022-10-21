@@ -52,7 +52,7 @@ this.http.get('/api/leave').subscribe(res=>{
   this.postss=[]
     this.postss= res
 })
-const endpointURL1=('/api/leave/'+id+'/'+remarks.value)
+const endpointURL1=('/api/leaves/'+id+'/'+remarks.value)
 this.http.put(endpointURL1,{remarks:"{{remarks.value}}"}).subscribe()
 
 
@@ -85,6 +85,10 @@ this.http.get('/api/leave').subscribe(res=>{
 })
 // const endpointURL1=('/api/leaves/'+id+'/'+remarks.value)
 // this.http.put(endpointURL1,{remarks:"{{remarks.value}}"}).subscribe()
+const endpointURL1=('/api/leaves/'+id+'/'+remarks.value)
+this.http.put(endpointURL1,{remarks:"{{remarks.value}}"}).subscribe()
+
+
 
 }
 

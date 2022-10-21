@@ -41,7 +41,8 @@ background-color: #e2e1e1;
   }
   .s{
     background-color: transparent;
-  }
+    margin-left: 116px;
+    margin-top: 24px;}
   /* .butt{
         width: 250px;
         position:relative;
