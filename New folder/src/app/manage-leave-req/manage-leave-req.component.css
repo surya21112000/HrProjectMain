@@ -317,16 +317,7 @@ left: 150px;
 }
 
 /* Set a style for the submit/login button */
-.form-container .btn {
-  background-color: #5190cd;
-  color: white;
-  padding: 16px 20px;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  margin-bottom:10px;
-  opacity: 0.8;
-}
+
 
 /* Add a red background color to the cancel button */
 .form-container .cancel {
@@ -369,22 +360,24 @@ form input {
   width: max-content;
 }
 .btn{
-  background-color: rgb(74, 153, 255);;
-  color: white;
+  background-color: #4a99ff;
+  color: #fff;
   padding: 11px 10px;
   border: none;
   cursor: pointer;
-  width: 30%;
-  margin-bottom:10px;
-  opacity: 0.8;
-  border-radius: 5%;
+  width: 47%;
+  margin-bottom: 10px;
+  opacity: .8;
+  /* border-radius: 5%; */
+  margin-right: 5px;
+  margin-top: 20px;
 }
 .btn-cancel{
   color: white;
   padding: 16px 20px;
   border: none;
   cursor: pointer;
-  width: 30%;
+  width: 49%;
   margin-bottom:10px;
   opacity: 0.8;
 

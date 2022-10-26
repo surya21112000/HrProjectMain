@@ -66,13 +66,13 @@
             <tr class="table-primary" >
 
               <td><input type="date" style="text-indent: 0px;width: max-content;" (input)="funct($event)" formControlName="firstdate"></td>
-              <td><input type="date" style="text-indent: 0px;width: max-content;" (input)="Funct($event)" formControlName="seconddate" min="{{cdate}}"></td>
+              <td><input type="date" style="text-indent: 0px;width: max-content;" (input)="Funct($event)" formControlName="seconddate" min="{{this.fdate}}"></td>
 
             </tr>
            <tr>
             <td><label>Total no of days</label></td>
             <td>
-  <p>{{f}}</p>
+  <p>{{leaveDays}}</p>
             </td>
            </tr>
           </tbody>

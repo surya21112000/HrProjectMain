@@ -41,19 +41,22 @@ export class ManageLeaveReqComponent implements OnInit {
 
   }
   status:any
-myFunct(id:any,remarks:any){
+Approve(id:any,remarks:any){
   this.form=false
   this.status="Approved"
 const endpointURL=('/api/leave/'+id+'/'+this.status)
 console.log(endpointURL);
-this.http.put(endpointURL,{status:'{{this.status}}'}).subscribe()
-
+this.http.put(endpointURL,{status:'{{this.status}}'}).subscribe(res=>{
 this.http.get('/api/leave').subscribe(res=>{
   this.postss=[]
     this.postss= res
-})
+})})
 const endpointURL1=('/api/leaves/'+id+'/'+remarks.value)
-this.http.put(endpointURL1,{remarks:"{{remarks.value}}"}).subscribe()
+this.http.put(endpointURL1,{remarks:"{{remarks.value}}"}).subscribe(res=>{
+  this.http.get('/api/leave').subscribe(res=>{
+    this.postss=[]
+      this.postss= res
+  })})
 
 
 }
@@ -70,23 +73,26 @@ this.details.to=to
 this.details.id=id
 
 }
-myFuncti(id:any,remarks:any){
+Decline(id:any,remarks:any){
   this.form=false
 
 
   this.status="Declined"
 const endpointURL=('/api/leave/'+id+'/'+this.status)
 console.log(endpointURL);
-this.http.put(endpointURL,{status:'{{this.status}}'}).subscribe()
-
-this.http.get('/api/leave').subscribe(res=>{
-  this.postss=[]
-    this.postss= res
-})
+this.http.put(endpointURL,{status:'{{this.status}}'}).subscribe(res=>{
+  this.http.get('/api/leave').subscribe(res=>{
+    this.postss=[]
+      this.postss= res
+  })})
 // const endpointURL1=('/api/leaves/'+id+'/'+remarks.value)
 // this.http.put(endpointURL1,{remarks:"{{remarks.value}}"}).subscribe()
 const endpointURL1=('/api/leaves/'+id+'/'+remarks.value)
-this.http.put(endpointURL1,{remarks:"{{remarks.value}}"}).subscribe()
+this.http.put(endpointURL1,{remarks:"{{remarks.value}}"}).subscribe(res=>{
+  this.http.get('/api/leave').subscribe(res=>{
+    this.postss=[]
+      this.postss= res
+  })})
 
 
 

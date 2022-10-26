@@ -45,8 +45,8 @@
   <td>{{posta.seconddate}}</td>
  <td>{{posta.status}}</td>
  <td><button (click)="popup(posta.name,posta.leavetype,posta.reason,posta.firstdate,posta.seconddate,posta._id)">Approval</button></td>
-<!-- <td><button  (click)="myFunct(posta._id)"><span class="glyphicon glyphicon-new-window"></span></button></td>
-<td><button (click)="myFuncti(posta._id)">Decline</button></td> -->
+<!-- <td><button  (click)="Approve(posta._id)"><span class="glyphicon glyphicon-new-window"></span></button></td>
+<td><button (click)="Decline(posta._id)">Decline</button></td> -->
 
 
 <!-- </tr>  {{ss}} -->
@@ -73,7 +73,7 @@
   <tr>
 
     <td><input type="text" name="" id="" value="{{details.leavetype}}" disabled></td>
-    <td><input type="text" value="{{details.reason}}" disabled></td>
+    <td> <textarea name="" id="" cols="26" rows="5" value="{{details.reason}}" disabled></textarea>         </td>
   </tr>
 </table>
 
@@ -121,9 +121,9 @@ align-middle" style="width: 15px;">
 <div class="mb-3">
 <label for="" class="form-label"></label>
 
-<textarea class="form-control" value="" name="" id="" rows="5" style="border: solid 1px black;background-color:rgb(243, 243, 243);" #remarks></textarea>
+<textarea class="form-control" value="" name="" id="" rows="3" style="border: solid 1px black;background-color:rgb(243, 243, 243);" #remarks></textarea>
 </div>
-<button type="button" class="btn cancel" (click)="myFuncti(details.id,remarks)" style="width: 49%;">Decline</button>||<button type="submit" class="btn" style="width: 49%;"(click)="myFunct(details.id,remarks)" >Approve</button>&nbsp;
+<button type="button" class="btn cancel" (click)="Decline(details.id,remarks)" >Decline</button><button type="submit" class="btn" (click)="Approve(details.id,remarks)" >Approve</button>&nbsp;
 </div></form></div>
     </section>
 

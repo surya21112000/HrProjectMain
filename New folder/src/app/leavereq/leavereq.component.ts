@@ -119,6 +119,13 @@ closeForm(){
 fdate:Date|any
 sdate:Date|any
 cdate:any
+days:any;
+todateSec:any;
+fromdateSec:any;
+millisecondsPerDay:any;
+diff:any;
+weeks:any;
+leaveDays='';
 funct(e: any){
   this.fdate=e.target.value;
  var todate:any=new Date(this.fdate).getDate()+1
@@ -141,7 +148,6 @@ this.cdate=toyear +"-"+tomonth+"-"+todate
 }
 f:any
 dis=false
-
 Funct(e: any){
   this.sdate=e.target.value;
 
@@ -150,11 +156,53 @@ var date1 = new Date(this.sdate).getTime()
   this.f =(date1-date)/86400000
 
 
-// alert("Total no of Days"+this.f);
+  //alert(this.toDate);
+  //alert(this.fromDate);
+
+  this.todateSec = new Date(this.sdate);
+  this.fromdateSec = new Date(this.fdate);
+
+  if (this.todateSec < this.fromdateSec)
+  alert('To date must be grater that from date!');
+
+  // Calculate days between dates
+  this.millisecondsPerDay = 86400 * 1000; // Day in milliseconds
+  this.fromdateSec.setHours(0, 0, 0, 1); // Start just after midnight
+  this.todateSec.setHours(23, 59, 59, 999); // End just before midnight
+  this.diff = this.todateSec - this.fromdateSec; // Milliseconds between datetime objects
+  this.days = Math.ceil(this.diff / this.millisecondsPerDay);
+
+  // Subtract two weekend days for every week in between
+  this.weeks = Math.floor(this.days / 7);
+  this.days = this.days - (this.weeks * 2);
+
+  // Handle special cases
+  this.fromdateSec = this.fromdateSec.getDay();
+  this.todateSec = this.todateSec.getDay();
+
+  // Remove weekend not previously removed.
+  if (this.fromdateSec - this.todateSec > 1)
+  this.days = this.days - 2;
+
+  // Remove start day if span starts on Sunday but ends before Saturday
+  if (this.fromdateSec == 0 && this.todateSec != 6)
+  this.days = this.days - 1;
+
+  // Remove end day if span ends on Saturday but starts after Sunday
+  if (this.todateSec === 6 && this.fromdateSec !== 0) {
+  this.days = this.days - 1 ;
+  }
+  this.leaveDays = this.days;
+  if ( this.leaveDays === 'NaN' || this.leaveDays === '' || this.leaveDays <= '0' || this.leaveDays =='undefined'){
+  this.leaveDays = '';
+  } else {
+  this.leaveDays = this.days;
+  }
+
+  }
 
 
 
-}
 selectedi:any
   posts ={ totaldays:""}
   nam='surya'
