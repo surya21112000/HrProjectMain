@@ -126,8 +126,17 @@ millisecondsPerDay:any;
 diff:any;
 weeks:any;
 leaveDays='';
-funct(e: any){
+fdates(e: any){
   this.fdate=e.target.value;
+var fday=new Date(this.fdate).getDay()
+if(fday==0){
+  this.daysdisplay=true
+}else if(fday==6){
+  this.daysdisplay=true
+}
+else{
+  this.daysdisplay=false
+}
  var todate:any=new Date(this.fdate).getDate()+1
 if(todate<10){
   todate= "0" +todate
@@ -146,10 +155,19 @@ this.cdate=toyear +"-"+tomonth+"-"+todate
 
 
 }
+daysdisplay=false
 f:any
 dis=false
-Funct(e: any){
+sdates(e: any){
   this.sdate=e.target.value;
+  var sday=new Date(this.sdate).getDay()
+if(sday==0){
+  this.daysdisplay=true
+}else if(sday==6){
+  this.daysdisplay=true
+}else{
+  this.daysdisplay=false
+}
 
 var date = new Date(this.fdate).getTime()
 var date1 = new Date(this.sdate).getTime()
@@ -165,30 +183,29 @@ var date1 = new Date(this.sdate).getTime()
   if (this.todateSec < this.fromdateSec)
   alert('To date must be grater that from date!');
 
-  // Calculate days between dates
+
   this.millisecondsPerDay = 86400 * 1000; // Day in milliseconds
   this.fromdateSec.setHours(0, 0, 0, 1); // Start just after midnight
   this.todateSec.setHours(23, 59, 59, 999); // End just before midnight
   this.diff = this.todateSec - this.fromdateSec; // Milliseconds between datetime objects
   this.days = Math.ceil(this.diff / this.millisecondsPerDay);
 
-  // Subtract two weekend days for every week in between
   this.weeks = Math.floor(this.days / 7);
   this.days = this.days - (this.weeks * 2);
 
-  // Handle special cases
+
   this.fromdateSec = this.fromdateSec.getDay();
   this.todateSec = this.todateSec.getDay();
 
-  // Remove weekend not previously removed.
+
   if (this.fromdateSec - this.todateSec > 1)
   this.days = this.days - 2;
 
-  // Remove start day if span starts on Sunday but ends before Saturday
+
   if (this.fromdateSec == 0 && this.todateSec != 6)
   this.days = this.days - 1;
 
-  // Remove end day if span ends on Saturday but starts after Sunday
+
   if (this.todateSec === 6 && this.fromdateSec !== 0) {
   this.days = this.days - 1 ;
   }

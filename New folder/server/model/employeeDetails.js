@@ -26,7 +26,7 @@ const employeeDetails= new mongoose.Schema({
         required:true
     },
     dob:{
-        type:Date,
+        type:String,
         required:true
     },
     qualification:{
@@ -37,7 +37,7 @@ const employeeDetails= new mongoose.Schema({
         type:Date,
         required:true
     },
-    
+
     designation:{
         type:String,
         required:true
@@ -46,11 +46,11 @@ const employeeDetails= new mongoose.Schema({
         type:String,
         required:true
     },
-   
 
-    
-    
+
+
+
     }
- 
+
 )
 module.exports = mongoose.model("empDetails",employeeDetails)
